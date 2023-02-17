@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <style>
+        #errorname, #erroremail, #errorzip, #errorphone{
+            color: red;
+        }
+    </style>
+    <script>
+    function validateForm() {
+        const nameRegex = /[a-zA-Z]{2,23}/igm;
+        const emailRegex = /[a-z0-9A-Z]{1,20}@[a-z0-9A-Z]{1,10}\.[a-z]{2,}/gim;
+        const zipRegex = /^[0-9]{5}(?:-[0-9]{4})?$/;
+        const phoneRegex = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/gm;
+    
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const zip = document.getElementById("zip").value;
+        const phone = document.getElementById("phone").value;
+    
+        // let errorname = "";
+        // let erroremail = "";
+        // let errorzip = "";
+        // let errorphone = "";
+        if (nameRegex.test(name)) {
+            document.getElementById("errorname").innerHTML ="";
+        } else{
+            document.getElementById("errorname").innerHTML = "Name must be between 2 to 23 charectors.";
+        }
+        if (emailRegex.test(email)) {
+            document.getElementById("erroremail").innerHTML ="";
+        } else{
+            document.getElementById("erroremail").innerHTML = "Email is not valid. ";
+        }
+        if (zipRegex.test(zip)) {
+            document.getElementById("errorzip").innerHTML ="";
+        } else{
+            document.getElementById("errorzip").innerHTML = "Zip code is not valid";
+        }
+        if (phoneRegex.test(phone)) {
+            document.getElementById("errorphone").innerHTML ="";
+        } else{
+            document.getElementById("errorphone").innerHTML = "phone number is not valid";
+            return false;
+
+        }
+        
+      }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="return validateForm()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br><br>
+      <p id="errorname"></p>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email"><br><br>
+      <p id="erroremail"></p>
+      <label for="zip">Zip Code:</label>
+      <input type="text" id="zip" name="zip"><br><br>
+      <p id="errorzip"></p>
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone"><br><br>
+      <p id="errorphone"></p>
+      <!-- <input type="submit" value="Submit"> -->
+      <button>Submit</button>
+    </form>
+    
+  </body>
+</html>
